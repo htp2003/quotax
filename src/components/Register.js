@@ -4,7 +4,7 @@ import './auth.css';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { Button, Checkbox, Form, Input } from 'antd';
 const Register = () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
@@ -39,7 +39,12 @@ const Register = () => {
             toast.error('Registration failed. Please try again.');
         }
     };
-
+    const onFinish = (values) => {
+        console.log('Success:', values);
+    };
+    const onFinishFailed = (errorInfo) => {
+        console.log('Failed:', errorInfo);
+    };
     return (
         <div className="auth-container">
             <div className="auth-form">

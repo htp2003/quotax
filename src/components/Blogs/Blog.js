@@ -1,9 +1,9 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Blog.css'; // Import stylesheet
 import { blogs } from '../Blogs/ListOfBlogs';
-
+import axios from 'axios';
 const Blog = () => {
     const postsPerPage = 8;
     const [currentPage, setCurrentPage] = useState(1);
@@ -25,7 +25,20 @@ const Blog = () => {
     const handleClick = (page) => {
         setCurrentPage(page);
     };
+    const [posts, setPosts] = useState([]);
 
+    useEffect(() => {
+        const fetchPosts = async () => {
+            try {
+                const response = await axios.get('http://localhost:8080/api/posts');
+                setPosts(response.data.posts);
+            } catch (error) {
+                console.error('Error fetching posts:', error);
+            }
+        };
+
+        fetchPosts();
+    }, []);
 
     return (
         <div className='blog-container'>

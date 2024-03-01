@@ -26,22 +26,7 @@ const BuildingCalculatorReact = () => {
         e.preventDefault();
 
         // Your calculation logic goes here
-        console.log('Loại nhà:', loaiNha);
-        console.log('Loại xây:', loaiXay);
-        console.log('Mức đầu tư:', mucDauTu);
-        console.log('Loại công trình:', loaiCongTrinh);
-        console.log('Chiều rộng:', chieuRong);
-        console.log('Chiều dài:', chieuDai);
-        console.log('Số tầng:', soTang);
-        console.log('Hẻm:', hem);
-        console.log('Lửng:', lung);
-        console.log('Tầng thượng:', tum);
-        console.log('Loại sân thượng:', loaiSanThuong);
-        console.log('Ban công:', banCong);
-        console.log('Móng:', mong);
-        console.log('Tầng hầm:', tangHam);
-        console.log('Mái:', mai);
-        console.log('Sân vườn:', sanVuong);
+
     };
 
     return (

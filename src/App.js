@@ -25,11 +25,12 @@ import Rectangle from './components/Utilities/Rectangle/Rectangle';
 import Banner from './components/Views/Banner/Banner'
 import NhaCap4 from './components/NhaCap4/NhaCap4';
 import NhaCap4Detail from './components/NhaCap4/NhaCap4Detail';
+import ChangePassword from './components/ChangePassword';
 
 function App() {
   return (
     <div className="App">
-      <Banner />
+
       <Router>
         <AuthProvider>
           <Navigation />
@@ -38,6 +39,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/profile" element={<ViewProfile />} />
+            <Route path="/change-password" element={<ChangePassword />} />
             <Route path="/quotation" element={<Quotation />} />
             <Route path="" element={<BodyPage />} />
             <Route path="/blog" element={<Blog />} />

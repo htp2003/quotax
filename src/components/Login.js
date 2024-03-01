@@ -1,35 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './auth.css';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { Form, Input, Button, Checkbox } from 'antd';
 import axios from 'axios';
+import { useForm } from 'antd/es/form/Form';
 
 const Login = () => {
     const navigate = useNavigate();
-    const [formData, setFormData] = useState({
-        username: '',
-        password: ''
-    });
 
-    const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value,
-        });
-    };
-
-
-    const handleLogin = async (e) => {
-        e.preventDefault();
-
+    const onFinish = async (values) => {
         try {
-            const response = await axios.post('http://localhost:8080/api/login', formData);
+            const response = await axios.post('http://localhost:8080/api/login', values);
             const { token, user } = response.data;
+            const userId = parseInt(user.id, 10);
 
-            // Lưu thông tin người dùng vào localStorage
-            localStorage.setItem('userData', JSON.stringify(user));
+            localStorage.setItem('userData', JSON.stringify({
+                userId,
+                username: user.username,
+                fullname: user.fullname,
+                email: user.email,
+                phone: user.phone,
+                address: user.address,
+            }));
             localStorage.setItem('token', token);
 
             toast.success(`Welcome back, ${user.username}!`, { autoClose: 2000 });
@@ -42,23 +35,81 @@ const Login = () => {
         }
     };
 
+    const onFinishFailed = (errorInfo) => {
+        console.log('Failed:', errorInfo);
+    };
+
+    const [form] = useForm();
+
     return (
-        <div className="auth-container">
+        <div className="auth-container" style={{ display: 'flex', flexDirection: 'column' }}>
+            <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>Login Page</h2>
             <div className="auth-form">
-                <h2>Login Page</h2>
-                <form onSubmit={handleLogin}>
-                    <label className='input-field'>
-                        Username:
-                        <input type="text" name='username' onChange={handleChange} required />
-                    </label>
-                    <br />
-                    <label className='input-field'>
-                        Password:
-                        <input type="password" name='password' onChange={handleChange} required />
-                    </label>
-                    <br />
-                    <button type="submit" className="btn login-btn">Login</button>
-                </form>
+
+                <Form
+                    form={form}
+                    name="basic"
+                    labelCol={{
+                        span: 8,
+                    }}
+                    wrapperCol={{
+                        span: 16,
+                    }}
+                    initialValues={{
+                        remember: true,
+                    }}
+                    onFinish={onFinish}
+                    onFinishFailed={onFinishFailed}
+                    autoComplete="off"
+                >
+                    <Form.Item
+                        label="Username"
+                        name="username"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input your username!',
+                            },
+                        ]}
+                    >
+                        <Input />
+                    </Form.Item>
+
+                    <Form.Item
+                        label="Password"
+                        name="password"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input your password!',
+                            },
+                        ]}
+                    >
+                        <Input.Password />
+                    </Form.Item>
+
+                    <Form.Item
+                        name="remember"
+                        valuePropName="checked"
+                        wrapperCol={{
+                            offset: 8,
+                            span: 16,
+                        }}
+                    >
+                        <Checkbox>Remember me</Checkbox>
+                    </Form.Item>
+
+                    <Form.Item
+                        wrapperCol={{
+                            offset: 8,
+                            span: 16,
+                        }}
+                    >
+                        <Button type="primary" htmlType="submit">
+                            Submit
+                        </Button>
+                    </Form.Item>
+                </Form>
                 <p>
                     Don't have an account? <Link to="/register">Register here</Link>.
                 </p>

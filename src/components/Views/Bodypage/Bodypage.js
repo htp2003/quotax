@@ -6,10 +6,11 @@ import Marquee from '../../Utilities/Marquee/Marquee';
 import CustomerReviews from '../CustomerReviews/CustomerReview';
 import BannerCarousel from '../BannerCarousel/BannerCarousel';
 import './BodyPage.css'
-
+import Banner from '../Banner/Banner';
 const BodyPage = () => {
     return (
         <div>
+            <Banner />
             <Marquee />
             <BannerCarousel />
             {/* Block 1: Giới thiệu */}
