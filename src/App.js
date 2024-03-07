@@ -22,7 +22,6 @@ import BlogDetail from './components/Blogs/BlogDetail';
 import Construction_project_Detail from './components/Project/Construction_project/Construction_project_Detail';
 import Completed_Construction_project_Detail from './components/Project/Completed_Construction_project/Completed_Construction_project';
 import Rectangle from './components/Utilities/Rectangle/Rectangle';
-import Banner from './components/Views/Banner/Banner'
 import NhaCap4 from './components/NhaCap4/NhaCap4';
 import NhaCap4Detail from './components/NhaCap4/NhaCap4Detail';
 import ChangePassword from './components/ChangePassword';
@@ -54,6 +53,7 @@ function App() {
             <Route path="/NhaCap4" element={<NhaCap4 />} />
             <Route path="/NhaCap4Detail/:id" element={<NhaCap4Detail />} />
             <Route path='*' element={<div className='NotFound'>404 - Not Found</div>} />
+
           </Routes>
 
         </AuthProvider>
