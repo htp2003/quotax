@@ -1,5 +1,6 @@
 // src/components/BodyPage.js
 import React from 'react';
+import { useEffect } from 'react';
 import PostList from '../../Posts/Postlist';
 import Calculator from '../../Utilities/Calculator/Calculator';
 import Marquee from '../../Utilities/Marquee/Marquee';
@@ -9,6 +10,7 @@ import './BodyPage.css'
 import Banner from '../Banner/Banner';
 
 const BodyPage = () => {
+
     return (
         <div>
             <Banner />
