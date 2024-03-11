@@ -26,6 +26,7 @@ import NhaCap4 from './components/NhaCap4/NhaCap4';
 import NhaCap4Detail from './components/NhaCap4/NhaCap4Detail';
 import ChangePassword from './components/ChangePassword';
 import Dashboard from './components/Staff/Dashboard';
+import PrivateRoute from './components/Authentication/PrivateRoute';
 function App() {
 
   return (
@@ -36,7 +37,7 @@ function App() {
 
           <Routes>
 
-            <Route path="/dashboard/*" element={<Dashboard />} />
+            <Route path="/staff/*" element={<PrivateRoute element={<Dashboard />} />} />
             <Route path="*" element={<PageWrapper />} />
           </Routes>
 

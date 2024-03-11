@@ -42,6 +42,7 @@ const NavigationBar = () => {
                             <Link to="/contact" className="nav-link">Liên hệ</Link>
                         </Nav>
                     </Navbar.Collapse>
+
                     <Nav>
                         {userData ? (
                             <>
@@ -49,10 +50,14 @@ const NavigationBar = () => {
                                     <Link to="/profile" className="dropdown-item">View Profile</Link>
                                     <Link to="/quotation" className="dropdown-item">My Quotation</Link>
                                     <Link to="/change-password" className="dropdown-item" >Change Password</Link>
+
+                                    {userData.role === 'Staff' || userData.role === 'Admin' ? (
+                                        <Link to="/staff/contract-process" className="dropdown-item">Dashboard</Link>
+                                    ) : null}
+
                                     <NavDropdown.Divider />
                                     <NavDropdown.Item onClick={handleLogout} style={{ color: 'red' }}>Logout</NavDropdown.Item>
                                 </NavDropdown>
-
                             </>
                         ) : (
                             <Link to="/login">
@@ -62,6 +67,8 @@ const NavigationBar = () => {
                             </Link>
                         )}
                     </Nav>
+
+
                 </Container>
             </Navbar>
         </>

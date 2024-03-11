@@ -1,27 +1,26 @@
-import { createContext, useContext, useState } from 'react';
+// AuthContext.js
+import React, { createContext, useContext, useState } from 'react';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('userData')) || null);
 
-    const login = () => {
-        // Thực hiện logic đăng nhập và cập nhật state
-        setIsLoggedIn(true);
+    const login = (userData) => {
+        setUser(userData);
     };
 
     const logout = () => {
-        // Thực hiện logic đăng xuất và cập nhật state
-        setIsLoggedIn(false);
+        // Implement your logout logic here, e.g., clearing local storage
+        localStorage.removeItem('userData');
+        setUser(null);
     };
 
     return (
-        <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+        <AuthContext.Provider value={{ user, login, logout }}>
             {children}
         </AuthContext.Provider>
     );
 };
 
-export const useAuth = () => {
-    return useContext(AuthContext);
-};
+export const useAuth = () => useContext(AuthContext);

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Calculator.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import axios from 'axios';
 const BuildingCalculatorReact = (e) => {
     const [resultData, setResultData] = useState(null);
     const [donGia, setDonGia] = useState(0);
@@ -28,6 +28,7 @@ const BuildingCalculatorReact = (e) => {
     const [tangHam, setTangHam] = useState('Không hầm');
     const [mai, setMai] = useState('Mái tôn');
     const [sanVuon, setSanVuon] = useState('0');
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -354,7 +355,15 @@ const BuildingCalculatorReact = (e) => {
         }
 
         setResultData({
+
             //loại
+            loaiNha: loaiNha,
+            dichVuXay: dichVuXay,
+            mucDauTu: mucDauTu,
+            matTien: matTien,
+            chieuRong: chieuRong,
+            chieuDai: chieuDai,
+            ngachHem: ngachHem,
             mong: mong,
             tangHam: tangHam,
             mai: mai,
@@ -389,6 +398,29 @@ const BuildingCalculatorReact = (e) => {
             tongChiPhi: tongChiPhi
         });
     }
+    const handleSaveResult = async () => {
+        try {
+            const response = await fetch('http://localhost:3001/saveResult', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(resultData),
+            });
+
+            if (response.ok) {
+                console.log('Result saved successfully');
+                // Handle success, e.g., show a success message to the user
+            } else {
+                console.error('Error saving result:', response.statusText);
+                // Handle error, e.g., show an error message to the user
+            }
+        } catch (error) {
+            console.error('Error saving result:', error);
+            // Handle error, e.g., show an error message to the user
+        }
+    };
+
 
 
 
@@ -588,7 +620,12 @@ const BuildingCalculatorReact = (e) => {
                                         <th>Tổng chi phí: {tongChiPhi.toLocaleString('vi-VN')} VND</th> {/* Giả sử bạn có hàm tinhTongChiPhi */}
                                     </tr>
                                 </tfoot>
+
+
                             </table>
+                            <button type="button" className="btn" id="luubtn" onClick={handleSaveResult}>
+                                Lưu và nhận báo giá chi tiết
+                            </button>
                         </>
                     )}
                 </div>

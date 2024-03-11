@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 const Sidebar = () => {
     return (
         <div className="sidebar">
-            <Link to="/dashboard/contract-process">Contract Process</Link>
-            <Link to="/dashboard/feedback">Feedback</Link>
-            <Link to="/dashboard/create-post">Create Post</Link>
-            <Link to="/dashboard/manage-posts">Manage Posts</Link>
+            <Link to="/staff/contract-process">Contract Process</Link>
+            <Link to="/staff/feedback">Feedback</Link>
+            <Link to="/staff/create-post">Create Post</Link>
+            <Link to="/staff/manage-posts">Manage Posts</Link>
         </div>
     );
 };

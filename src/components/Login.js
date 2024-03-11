@@ -5,9 +5,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Form, Input, Button, Checkbox } from 'antd';
 import axios from 'axios';
 import { useForm } from 'antd/es/form/Form';
-
+import { useAuth } from './AuthContext';
 const Login = () => {
     const navigate = useNavigate();
+    const { login } = useAuth(); // Access the login function from the context
 
     const onFinish = async (values) => {
         try {
@@ -22,9 +23,11 @@ const Login = () => {
                 email: user.email,
                 phone: user.phone,
                 address: user.address,
+                role: user.role,
             }));
             localStorage.setItem('token', token);
-
+            login(user);
+            console.log(user.role);
             toast.success(`Welcome back, ${user.username}!`, { autoClose: 2000 });
             setTimeout(() => {
                 navigate('/');

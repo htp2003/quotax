@@ -1,135 +1,141 @@
+/* CSS cho Blog */
 .blog-container {
-  .title {
-    text-align: left;
-    margin: 10px;
-    font-size: 25px;
-  }
-
-  /* Trong file CSS hoặc tệp style của bạn */
-
-  .ul-blog {
-    display: flex;
-    flex-wrap: wrap;
-    list-style: none;
-    padding: 60px;
-    padding-bottom: 0;
-  }
-
-  .li-post {
-    width: calc(25% - 10px);
-    /* 25% width for each li, considering 10px margin */
-    margin-bottom: 100px;
-    /* Adjust the margin-bottom based on your preference */
-    box-sizing: border-box;
-    /* Include padding and border in the element's total width and height */
-  }
-
-  .li-post>div {
-    border: 1px solid #ffffff;
-    /* Optional: Add a border around each li */
-    padding: 10px;
-    /* Optional: Add padding around each li */
-  }
-
-  /* Optional: Add styling for links and images */
-  .li-post a {
-    text-decoration: none;
-    color: #333;
-  }
-
-  .li-post img {
-    width: 75%;
-    /* Make the image fill the container */
-    height: auto;
-    /* Maintain the aspect ratio of the image */
-    border-radius: 5px;
-    /* Optional: Add rounded corners to the image */
-  }
-
-  .blog-title {
-    font-size: 20px;
-    font-weight: bolder;
-
-    &:hover {
-      color: #2980b9;
-      text-decoration: #8dc4e9;
-    }
-  }
-
-  .blog-img {
-    padding-bottom: 15px;
-  }
+  margin: 30px auto;
+  max-width: 1200px;
+  /* Giới hạn chiều rộng của container */
+  padding: 0 20px;
 }
 
-/**/
-/* Pagination container */
+.blog-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 32px;
+  color: #c0392b;
+}
+
+.search-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.search-container input[type="text"] {
+  width: 60%;
+  /* Điều chỉnh chiều rộng của input */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.search-blog-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.blog-list {
+  list-style: none;
+  padding-left: 60px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,
+      minmax(250px, 1fr));
+  /* Dãn các item theo kích thước của container */
+  grid-gap: 20px;
+}
+
+.blog-item {
+  border: 1px #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.blog-item:hover {
+  transform: translateY(-5px);
+}
+
+.blog-img {
+  width: 70%;
+  height: auto;
+  border-radius: 8px 8px 0 0;
+  /* Bo tròn góc trên của hình ảnh */
+}
+
+.blog-post-title {
+  font-size: 20px;
+  margin: 10px;
+  text-align: center;
+  color: rgb(193, 46, 46);
+  padding-right: 70px;
+}
+
 .pagination {
   display: flex;
-  list-style: none;
-  padding: 0;
   justify-content: center;
-  margin-bottom: 50px;
-  /* Đẩy lên trên 100px */
-}
-
-/* Pagination item */
-.pagination button {
-  margin: 0 5px;
-  padding: 10px 15px;
-  border: 1px solid #3498db;
-  background-color: #3498db;
-  color: #fff;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  border-radius: 4px;
-}
-
-/* Hover effect */
-.pagination button:hover {
-  background-color: #2980b9;
-}
-
-/* Active page style */
-.pagination button.active {
-  background-color: #2980b9;
-}
-
-/* CSS cho BlogDetail.js */
-
-.blog-detail-container {
-  max-width: 800px;
-  margin: 20px 0 20px 20px;
-  /* Đưa container về phía trái */
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-}
-
-.blog-detail-img {
-  max-width: 50%;
-  /* Giảm kích thước hình ảnh */
-  height: auto;
-  display: block;
   margin-top: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/*css chu*/
-.blog-detail-excerpt {
-  font-size: 20px;
-  text-align: left;
-  padding-top: 20px;
+.page-item {
+  margin: 0 5px;
+  list-style: none;
+  cursor: pointer;
 }
 
-.blog-detail-title {
-  font-size: 40px;
-  text-align: left;
-  color: #e74c3c;
+.page-link {
+  color: #007bff;
+  text-decoration: none;
 }
 
-.blog-detail-date {
-  font-size: 30px;
-  text-align: left;
-  color: #e74c3c;
+.active {
+  font-weight: bold;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .blog-list {
+    grid-template-columns: repeat(2,
+        1fr);
+    /* Hiển thị 2 cột cho màn hình nhỏ hơn */
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .blog-list {
+    grid-template-columns: 1fr;
+    /* Hiển thị 1 cột cho các thiết bị có kích thước nhỏ hơn */
+  }
+
+  .search-container input[type="text"] {
+    width: 100%;
+    /* Chiều rộng input đầy đủ cho các thiết bị nhỏ */
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}
+
+.blog-img-search {
+  width: 200px;
+  /* Điều chỉnh kích thước hình ảnh tìm kiếm */
+  height: auto;
+  /* Đảm bảo tỉ lệ khung hình được bảo tồn */
+  margin-left: 10px;
+}
+
+.blog-post-title-search {
+  padding-left: 52px;
+}
+
+.single-result-img {
+  width: 200px;
+  /* Điều chỉnh kích thước hình ảnh tìm kiếm */
+  height: auto;
+  /* Đảm bảo tỉ lệ khung hình được bảo tồn */
+  margin-left: 10px;
+}
+
+.single-result-title {
+  padding-right: 900px;
 }
